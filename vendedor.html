@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel Vendedor | TênisX</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div>
+          <div class="logo">
+            <div class="logo-icon">TX</div>
+            <div class="logo-text">
+              <span>TÊNISX</span>
+              <span>Marketplace sneaker</span>
+            </div>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Buscar tênis, marca ou numeração..." />
+            <button>Buscar</button>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="vendedor.html" class="active">Vendedor</a>
+          <a href="admin.html">Admin</a>
+          <span class="role-tag">Vendedor</span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Cabeçalho da página -->
+      <section style="margin-bottom: 20px;">
+        <h1 class="page-title">Meus Tênis</h1>
+        <p class="page-subtitle">
+          Acompanhe seus produtos, atualize preços e cadastre novos modelos.
+        </p>
+      </section>
+
+      <!-- Produtos do vendedor -->
+      <section style="margin-bottom: 22px;">
+        <div class="grid grid-3">
+          <article class="card product-card">
+            <div class="product-image">
+              preview do tênis (imagem)
+            </div>
+            <div class="product-main-info">
+              <div>
+                <div class="product-name">NK Dunk Low Panda</div>
+                <div class="product-brand">Nike • Unissex</div>
+              </div>
+              <div class="product-price">R$ 299,00</div>
+            </div>
+            <div class="product-meta">
+              <span>Numeração: 37 • 38 • 39 • 40</span>
+              <span class="badge badge-success">Ativo</span>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <div class="product-image">
+              preview do tênis (imagem)
+            </div>
+            <div class="product-main-info">
+              <div>
+                <div class="product-name">ADDS Campus All Black</div>
+                <div class="product-brand">Adidas • Masculino</div>
+              </div>
+              <div class="product-price">R$ 299,00</div>
+            </div>
+            <div class="product-meta">
+              <span>Numeração: 40 • 41 • 42</span>
+              <span class="badge badge-warning">Pouco estoque</span>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <div class="product-image">
+              preview do tênis (imagem)
+            </div>
+            <div class="product-main-info">
+              <div>
+                <div class="product-name">NB 9060 Grey Pink</div>
+                <div class="product-brand">New Balance • Feminino</div>
+              </div>
+              <div class="product-price">R$ 419,00</div>
+            </div>
+            <div class="product-meta">
+              <span>Numeração: 35 • 36 • 37</span>
+              <span class="badge badge-danger">Esgotando</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Formulário: adicionar novo produto -->
+      <section class="card card-muted" style="margin-bottom: 22px;">
+        <div class="form-section-title">Adicionar novo tênis</div>
+        <p class="page-subtitle" style="margin-bottom: 10px;">
+          Preencha os dados abaixo para cadastrar um novo produto na sua vitrine.
+        </p>
+
+        <form class="form" onsubmit="event.preventDefault(); alert('No back-end ainda, só layout :)');">
+          <div class="form-row">
+            <label for="nome">Nome do produto</label>
+            <input id="nome" type="text" placeholder="Ex.: NK Dunk Low Cacao" required />
+          </div>
+
+          <div class="form-row">
+            <label for="marca">Marca</label>
+            <input id="marca" type="text" placeholder="Ex.: Nike, Adidas, New Balance..." required />
+          </div>
+
+          <div class="form-row">
+            <label for="preco">Preço (R$)</label>
+            <input id="preco" type="number" step="0.01" placeholder="Ex.: 299,90" required />
+          </div>
+
+          <div class="form-row">
+            <label for="numeracao">Numeração disponível</label>
+            <input
+              id="numeracao"
+              type="text"
+              placeholder="Ex.: 36, 37, 38, 39, 40"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="imagem">URL da imagem (temporário)</label>
+            <input id="imagem" type="url" placeholder="Cole o link da foto do tênis" />
+          </div>
+
+          <div class="form-row">
+            <label for="descricao">Descrição curta</label>
+            <textarea
+              id="descricao"
+              rows="3"
+              placeholder="Fale em poucas linhas sobre o conforto, material e estilo."
+            ></textarea>
+          </div>
+
+          <button class="btn-primary" type="submit">Salvar produto</button>
+        </form>
+      </section>
+
+      <!-- Pedidos recentes -->
+      <section class="card card-muted">
+        <div class="form-section-title">Pedidos recentes</div>
+        <p class="page-subtitle" style="margin-bottom: 8px;">
+          Visão rápida dos últimos pedidos gerados nos seus produtos.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th># Pedido</th>
+                <th>Produto</th>
+                <th>Cliente</th>
+                <th>Numeração</th>
+                <th>Status</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1023</td>
+                <td>NK Dunk Low Panda</td>
+                <td>João Silva</td>
+                <td>40</td>
+                <td>Pagamento aprovado</td>
+                <td>23/11/2025</td>
+              </tr>
+              <tr>
+                <td>#1022</td>
+                <td>ADDS Campus All Black</td>
+                <td>Maria Souza</td>
+                <td>38</td>
+                <td>Enviado</td>
+                <td>22/11/2025</td>
+              </tr>
+              <tr>
+                <td>#1021</td>
+                <td>NB 9060 Grey Pink</td>
+                <td>Lucas Lima</td>
+                <td>37</td>
+                <td>Aguardando pagamento</td>
+                <td>22/11/2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

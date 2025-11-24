@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>TênisX | Loja</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* HERO, filtros e newsletter – visual jovem/clean */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+      margin: 24px 0 26px;
+      align-items: center;
+    }
+
+    .hero-left-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .hero-left-highlight {
+      margin-top: 6px;
+      display: inline-block;
+      background: #e0edff;
+      border: 1px solid #bfdbfe;
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: #1d4ed8;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-left-text {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 10px;
+      max-width: 420px;
+    }
+
+    .hero-cta {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-ghost:hover {
+      background: #f3f4ff;
+      border-color: #bfdbfe;
+    }
+
+    .hero-right-card {
+      border-radius: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #0f172a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-tagline {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero-big {
+      font-size: 26px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .hero-badges {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .hero-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      font-size: 11px;
+    }
+
+    .hero-footer {
+      font-size: 11px;
+      color: rgba(241, 245, 249, 0.9);
+      margin-top: 10px;
+    }
+
+    .filters {
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      cursor: pointer;
+      color: #374151;
+      transition: 0.15s;
+    }
+
+    .chip:hover {
+      background: #e0edff;
+      border-color: #2563eb;
+      color: #1d4ed8;
+    }
+
+    .chip.primary {
+      background: #e0edff;
+      border-color: #2563eb;
+      color: #1d4ed8;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 0 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .section-link {
+      font-size: 12px;
+      color: #2563eb;
+      cursor: pointer;
+    }
+
+    .section-link:hover {
+      text-decoration: underline;
+    }
+
+    .newsletter {
+      margin-top: 28px;
+      padding: 18px 16px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid #dbeafe;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 16px;
+      align-items: center;
+      box-shadow: 0 10px 18px rgba(37, 99, 235, 0.1);
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 160px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 8px 12px;
+      background: #ffffff;
+      color: #111827;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .newsletter {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-inner">
+        <div>
+          <!-- LOGO CLICÁVEL -->
+          <a href="index.html" class="logo">
+            <div class="logo-icon">TX</div>
+            <div class="logo-text">
+              <span>TÊNISX</span>
+              <span>Sneakers & streetwear</span>
+            </div>
+          </a>
+
+          <!-- BUSCA COMO FORM -->
+          <form class="search-bar" id="search-form">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Buscar tênis, modelo ou numeração..."
+            />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+
+        <nav class="nav">
+        <a href="index.html" class="active">Loja</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- HERO TOP -->
+      <section class="hero">
+        <div>
+          <div class="hero-left-title">
+            Tênis de hype com cara de Nike,<br />preço de loja online.
+          </div>
+          <span class="hero-left-highlight">
+            FRETE GRÁTIS acima de R$ 299
+          </span>
+          <p class="hero-left-text">
+            Escolha seu sneaker favorito, veja fotos, detalhes e numeração.
+            Para finalizar a compra, clique no botão de WhatsApp dentro do anúncio
+            e fale direto com a equipe.
+          </p>
+          <div class="hero-cta">
+            <button class="btn-primary">Ver lançamentos</button>
+            <button class="btn-ghost">Ofertas da semana</button>
+          </div>
+        </div>
+
+        <div class="hero-right-card">
+          <div>
+            <div class="hero-tagline">Drop da semana</div>
+            <div class="hero-big">NK Dunk Low “Panda”</div>
+            <div class="hero-badges">
+              <span class="hero-badge">Numeração 37 a 43</span>
+              <span class="hero-badge">Envio rápido</span>
+              <span class="hero-badge">Pagamento via WhatsApp</span>
+            </div>
+          </div>
+          <div class="hero-footer">
+            Estoque limitado. Chame no WhatsApp para garantir o seu par.
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTROS FUNCIONAIS -->
+      <section>
+        <div class="filters">
+          <span class="chip primary" data-filter="todos">Todos</span>
+          <span class="chip" data-filter="masculino">Masculino</span>
+          <span class="chip" data-filter="feminino">Feminino</span>
+          <span class="chip" data-filter="unissex">Unissex</span>
+          <span class="chip" data-filter="casual">Casual</span>
+          <span class="chip" data-filter="corrida">Corrida</span>
+          <span class="chip" data-filter="ate300">Até R$ 300</span>
+          <span class="chip" data-filter="lancamentos">Lançamentos</span>
+        </div>
+      </section>
+
+      <!-- PRODUTOS DINÂMICOS -->
+      <section>
+        <div class="section-header">
+          <div class="section-title">Destaques</div>
+          <div class="section-link">Ver todos os modelos</div>
+        </div>
+
+        <div class="grid grid-3" id="lista-produtos">
+          <!-- JS preenche aqui -->
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="newsletter">
+        <div>
+          <div class="section-title" style="margin-bottom:6px;">
+            Quer receber os próximos drops?
+          </div>
+          <p>
+            Deixe seu e-mail e sua numeração. Quando chegar algum modelo na sua grade, a gente te chama.
+          </p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('No futuro dá pra integrar com planilha ou e-mail.');">
+          <input type="email" placeholder="Seu e-mail" required />
+          <input type="text" placeholder="Sua numeração (ex.: 39/40)" />
+          <button class="btn-primary" type="submit">Quero ser avisado</button>
+        </form>
+      </section>
+
+      <footer style="margin-top: 20px; font-size: 11px; color:#9ca3af;">
+        © 2025 TênisX. Todas as compras finalizadas via contato direto no WhatsApp.
+      </footer>
+    </main>
+  </div>
+
+  <!-- SCRIPT: busca + filtros + listagem -->
+  <script>
+    const API_URL = "http://127.0.0.1:8000";       // backend FastAPI
+    const WHATSAPP_NUMBER = "55SEUNUMEROAQUI";     // troque pelo seu número (55 + DDD + número)
+
+    function buildWhatsAppUrl(productName) {
+      const text = encodeURIComponent(
+        `Olá! Tenho interesse no tênis ${productName}. Pode me passar mais informações?`
+      );
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+
+    const lista       = document.getElementById("lista-produtos");
+    const searchForm  = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-input");
+    const chips       = document.querySelectorAll(".chip");
+
+    let allProducts       = [];      // todos produtos da API
+    let currentSearchTerm = "";      // texto da busca
+    let currentFilter     = "todos"; // filtro selecionado
+
+    function renderProdutos(produtos) {
+      if (!Array.isArray(produtos) || produtos.length === 0) {
+        lista.innerHTML = `
+          <p style="font-size:13px; color:#6b7280;">
+            Nenhum produto encontrado.
+          </p>`;
+        return;
+      }
+
+      lista.innerHTML = produtos.map((p) => {
+        const hasPhoto = !!p.image_url;
+
+        return `
+          <article class="card product-card"
+                   onclick="window.location='produto.html?id=${p.id}'"
+                   style="cursor:pointer;">
+
+            <div class="product-image">
+              ${
+                hasPhoto
+                  ? `<img src="${p.image_url}"
+                           alt="${p.name}"
+                           style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />`
+                  : (p.name || "SEM IMAGEM").toUpperCase()
+              }
+            </div>
+
+            <div class="product-main-info">
+              <div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-brand">${p.brand} • ${p.gender || ""}</div>
+              </div>
+              <div class="product-price">
+                R$ ${p.price.toFixed(2)}
+              </div>
+            </div>
+
+            <div class="product-meta">
+              <span>Numeração: ${p.sizes}</span>
+            </div>
+
+            <p class="page-subtitle" style="margin-top:6px;">
+              ${p.description || ""}
+            </p>
+
+            <a class="btn-whatsapp"
+               href="${buildWhatsAppUrl(p.name)}"
+               target="_blank"
+               rel="noopener"
+               onclick="event.stopPropagation();">
+              <span class="btn-whatsapp-icon">💬</span>
+              Falar no WhatsApp
+            </a>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function filtrarEExibir() {
+      let produtos = [...allProducts];
+
+      // 1) aplica busca
+      const termo = currentSearchTerm.trim().toLowerCase();
+      if (termo) {
+        produtos = produtos.filter((p) =>
+          (p.name     && p.name.toLowerCase().includes(termo)) ||
+          (p.brand    && p.brand.toLowerCase().includes(termo)) ||
+          (p.category && p.category.toLowerCase().includes(termo))
+        );
+      }
+
+      // 2) aplica filtro dos chips
+      produtos = produtos.filter((p) => {
+        const genero    = (p.gender   || "").toLowerCase();
+        const categoria = (p.category || "").toLowerCase();
+        const preco     = Number(p.price) || 0;
+
+        switch (currentFilter) {
+          case "masculino":
+            return genero === "masculino";
+          case "feminino":
+            return genero === "feminino";
+          case "unissex":
+            return genero === "unissex";
+          case "casual":
+            return categoria.includes("casual");
+          case "corrida":
+            return categoria.includes("corrida");
+          case "ate300":
+            return preco <= 300;
+          case "lancamentos":
+            // simples: usa "lançamento" na categoria
+            return categoria.includes("lan");
+          case "todos":
+          default:
+            return true;
+        }
+      });
+
+      renderProdutos(produtos);
+    }
+
+    async function carregarProdutos() {
+      try {
+        const resp = await fetch(`${API_URL}/products`);
+        if (!resp.ok) throw new Error("Erro na API");
+
+        const produtos = await resp.json();
+        allProducts = produtos;
+        filtrarEExibir(); // busca="" e filtro="todos"
+
+      } catch (err) {
+        console.error(err);
+        lista.innerHTML = `
+          <p style="font-size:13px; color:#b91c1c;">
+            Erro ao carregar produtos. Verifique se a API está rodando em ${API_URL}.
+          </p>`;
+      }
+    }
+
+    // BUSCA
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      currentSearchTerm = searchInput.value;
+      filtrarEExibir();
+    });
+
+    searchInput.addEventListener("input", () => {
+      if (!searchInput.value.trim()) {
+        currentSearchTerm = "";
+        filtrarEExibir();
+      }
+    });
+
+    // CHIPS / FILTROS
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.classList.remove("primary"));
+        chip.classList.add("primary");
+
+        currentFilter = chip.dataset.filter || "todos";
+        filtrarEExibir();
+      });
+    });
+
+    carregarProdutos();
+  </script>
+</body>
+</html>

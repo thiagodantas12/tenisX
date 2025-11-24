@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Produto | TênisX</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .product-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .product-gallery,
+    .product-info-box {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .product-main-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      background: radial-gradient(circle at 20% 0, #dbeafe 0, #bfdbfe 40%, #eff6ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-main-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .breadcrumb {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .breadcrumb a {
+      color: #6b7280;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .product-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .product-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .product-price-detail {
+      margin-top: 10px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .product-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111827;
+      margin-top: 14px;
+      margin-bottom: 4px;
+    }
+
+    .sizes-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .size-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .product-description {
+      font-size: 13px;
+      color: #4b5563;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .product-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .note-whats {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .not-found {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    @media (max-width: 900px) {
+      .product-page {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+ <a href="index.html" class="logo">
+  <div class="logo-icon">TX</div>
+  <div class="logo-text">
+    <span>TÊNISX</span>
+    <span>Detalhes do produto</span>
+  </div>
+</a>
+
+        <nav class="nav">
+        <a href="index.html">Loja</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="container" id="product-container">
+      <!-- preenchido via JS -->
+    </main>
+  </div>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8000";
+    const WHATSAPP_NUMBER = "55SEUNUMEROAQUI"; // troque pelo seu número
+
+    function buildWhatsAppUrl(productName) {
+      const text = encodeURIComponent(
+        `Olá! Tenho interesse no tênis ${productName}. Pode me passar mais informações?`
+      );
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+
+    const container = document.getElementById("product-container");
+    const params    = new URLSearchParams(window.location.search);
+    const id        = params.get("id");
+
+    async function carregarProduto() {
+      if (!id) {
+        container.innerHTML = `
+          <div class="not-found">
+            Produto não encontrado.<br />
+            <a href="index.html" style="color:#2563eb;">Voltar para a loja</a>
+          </div>`;
+        return;
+      }
+
+      try {
+        const resp = await fetch(`${API_URL}/products/${id}`);
+        if (!resp.ok) {
+          container.innerHTML = `
+            <div class="not-found">
+              Produto não encontrado.<br />
+              <a href="index.html" style="color:#2563eb;">Voltar para a loja</a>
+            </div>`;
+          return;
+        }
+
+        const p = await resp.json();
+        document.title = `${p.name} | TênisX`;
+
+        const sizesHtml = p.sizes
+          .split(",")
+          .map((s) => `<span class="size-pill">${s.trim()}</span>`)
+          .join("");
+
+        const whatsappUrl = buildWhatsAppUrl(p.name);
+
+        container.innerHTML = `
+          <section class="product-page">
+            <div class="product-gallery">
+              <div class="product-main-photo">
+                ${
+                  p.image_url
+                    ? `<img src="${p.image_url}" alt="${p.name}" />`
+                    : `<span style="color:#1d4ed8; font-size:12px; letter-spacing:.12em;">SEM IMAGEM</span>`
+                }
+              </div>
+            </div>
+
+            <div class="product-info-box">
+              <div class="breadcrumb">
+                <a href="index.html">Loja</a> › ${p.brand} › ${p.name}
+              </div>
+
+              <h1 class="product-title">${p.name}</h1>
+              <div class="product-subtitle">
+                ${p.brand} • ${p.gender || ""} • ${p.category || ""}
+              </div>
+
+              <div class="product-price-detail">
+                R$ ${p.price.toFixed(2)}
+              </div>
+
+              <div class="product-section-title">Numeração disponível</div>
+              <div class="sizes-list">
+                ${sizesHtml}
+              </div>
+
+              <div class="product-section-title">Descrição</div>
+              <p class="product-description">
+                ${p.description || "Sem descrição cadastrada."}
+              </p>
+
+              <div class="product-actions">
+                <a class="btn-whatsapp"
+                   href="${whatsappUrl}"
+                   target="_blank"
+                   rel="noopener">
+                  <span class="btn-whatsapp-icon">💬</span>
+                  Falar no WhatsApp sobre este modelo
+                </a>
+                <p class="note-whats">
+                  Você será direcionado para o nosso WhatsApp oficial para combinar pagamento, envio e tirar dúvidas.
+                </p>
+              </div>
+            </div>
+          </section>
+        `;
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+          <div class="not-found">
+            Erro ao carregar o produto.<br />
+            <a href="index.html" style="color:#2563eb;">Voltar para a loja</a>
+          </div>`;
+      }
+    }
+
+    carregarProduto();
+  </script>
+</body>
+</html>
